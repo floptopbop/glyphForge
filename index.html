@@ -1,174 +1,869 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<title>ASCII Water</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GLYPH_FORGE</title>
 <style>
-body {
-    margin: 0;
-    background: #21323d;
-    color: #62c0ff;
-    overflow: hidden;
-    font-family: "Noto Sans", "math", monospace;
+@font-face {
+  font-family: 'IBM VGA';
+  src: url('data:font/truetype;base64,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') format('truetype');
+  font-weight: mono;
+  font-style: mono;
 }
-pre {
-    margin: 0;
-    line-height: 1em;
-    font-size: 9px;
-    user-select: none;
-    width: 100vw;
-    height: 100dvh;
+:root{
+  --bg:#2D2C2E; --layer:#110F10; --layer2:#262626; --line:#c0c0c8;
+  --txt:#f4f4f4; --dim:#605D5E; --venom:#00e5ff; --amber:#ffb000;
+  --mono:"IBM VGA",ui-monospace,"SF Mono",Menlo,monospace;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{margin:0; background:var(--bg); color:var(--txt); font-family:var(--mono);}
+body{padding:14px 12px 60px; max-width:760px; margin:0 auto; font-size:14px;}
+
+header{padding:4px 2px 12px;}
+h1{font-size:20px; letter-spacing:.14em; margin:0; font-weight:600;}
+h1 .cur{color:var(--venom); animation:blink 1.1s steps(1) infinite;}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion: reduce){h1 .cur{animation:none}}
+.sub{color:var(--dim); font-size:11px; letter-spacing:.08em; margin-top:4px;}
+
+#tabs{display:flex; gap:6px; overflow-x:auto; padding-bottom:8px; scrollbar-width:none;}
+#tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto; background:var(--layer); border:1px solid var(--line); color:var(--dim);
+  font-family:var(--mono); font-size:12px; letter-spacing:.08em; padding:9px 13px; cursor:pointer;}
+.tab[aria-selected="true"]{color:var(--txt); border-color:var(--venom); box-shadow:inset 0 -2px 0 var(--venom);}
+
+.card{background:var(--layer); border:1px solid var(--line); padding:12px; margin-top:10px;}
+.card h2{font-size:11px; letter-spacing:.18em; color:var(--dim); margin:0 0 10px; font-weight:400;}
+
+.btnrow{display:flex; gap:8px; flex-wrap:wrap;}
+.btn{background:var(--layer2); border:1px solid var(--line); color:var(--txt);
+  font-family:var(--mono); font-size:12px; letter-spacing:.06em; padding:11px 14px; cursor:pointer;}
+.btn:active{border-color:var(--venom);}
+.btn.small{padding:7px 10px; font-size:11px; color:var(--dim);}
+.btn.small:active{color:var(--txt);}
+input[type=file]{display:none;}
+
+#thumb{display:none; max-width:96px; max-height:96px; border:1px solid var(--line); margin-top:10px;}
+
+.ctl{margin:12px 0 2px;}
+.ctl label{display:flex; justify-content:space-between; font-size:11px; letter-spacing:.1em; color:var(--dim); margin-bottom:6px;}
+.ctl output{color:var(--venom);}
+input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:26px; background:transparent;}
+input[type=range]::-webkit-slider-runnable-track{height:2px; background:var(--line);}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:22px; height:22px; margin-top:-10px;
+  background:var(--bg); border:2px solid var(--venom); border-radius:50%;}
+input[type=range]::-moz-range-track{height:2px; background:var(--line);}
+input[type=range]::-moz-range-thumb{width:18px; height:18px; background:var(--bg); border:2px solid var(--venom); border-radius:50%;}
+
+.ctl input[type=text], .ctl select{width:100%; background:var(--bg); border:1px solid var(--line); color:var(--txt);
+  font-family:var(--mono); font-size:14px; padding:9px 10px;}
+.ctl input[type=text]:focus, .ctl select:focus{outline:1px solid var(--venom);}
+.pair{display:flex; gap:10px;}
+.pair .ctl{flex:1;}
+input[type=color]{width:40px; height:40px; background:var(--bg); border:1px solid var(--line); padding:2px;
+  border-radius:0; -webkit-appearance:none; appearance:none; cursor:pointer;}
+input[type=color]::-webkit-color-swatch-wrapper{padding:0;}
+input[type=color]::-webkit-color-swatch{border:none; border-radius:0;}
+input[type=color]::-moz-color-swatch{border:none; border-radius:0;}
+.check{display:flex; align-items:center; gap:8px; font-size:12px; color:var(--dim); margin-top:12px;}
+.check input{width:18px; height:18px; accent-color:var(--venom);}
+
+#runBtn{width:100%; margin-top:12px; background:var(--venom); color:#001014; border:none;
+  font-family:var(--mono); font-size:14px; font-weight:600; letter-spacing:.2em; padding:15px; cursor:pointer;}
+#runBtn:disabled{background:var(--layer2); color:var(--dim);}
+
+#log{background:#0b0b0b; border:1px solid var(--line); padding:9px 10px; font-size:11px;
+  line-height:1.55; min-height:52px; max-height:170px; overflow-y:auto; word-break:break-word;}
+#log .tg{color:var(--venom);}
+#log .warn, #log .warn .tg{color:var(--amber);}
+
+#outimg{display:none; width:100%; margin-top:10px; border:1px solid var(--line);
+  image-rendering:pixelated; -webkit-touch-callout:default;}
+#outtxt{display:none; background:#050505; color:#e8e8e8; border:1px solid var(--line);
+
+  margin-top:10px; padding:8px; font-size:10px; line-height:1.05; overflow-x:auto; white-space:pre;}
+#outbtns{display:none; margin-top:10px;}
+a.btn{text-decoration:none; display:inline-block;}
+.note{font-size:11px; color:var(--dim); line-height:1.5; margin-top:8px;}
+.note code{color:var(--venom);}
+html, body {
+  font-family: "IBM VGA", monospace;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
 }
 </style>
 </head>
 <body>
-<pre id="screen"></pre>
+
+<header>
+  <h1>GLYPH_FORGE<span class="cur">▮</span></h1>
+  <div class="sub">SOVEREIGN ASCII SUITE · 5 ENGINES · SINGLE FILE</div>
+</header>
+
+<div id="tabs" role="tablist">
+  <button class="tab" data-e="SKELETON" aria-selected="true">SKELETON</button>
+  <button class="tab" data-e="DUST" aria-selected="false">DUST</button>
+  <button class="tab" data-e="SOVEREIGN" aria-selected="false">SOVEREIGN</button>
+  <button class="tab" data-e="MATRIX" aria-selected="false">MATRIX</button>
+  <button class="tab" data-e="TEXT" aria-selected="false">TEXTMODE</button>
+</div>
+
+<section class="card">
+  <h2>SOURCE</h2>
+  <div class="btnrow">
+    <label class="btn" for="pickLib">LOAD IMAGE</label>
+    <input type="file" id="pickLib" accept="image/*">
+    <label class="btn" for="pickCam">REAR CAM</label>
+    <input type="file" id="pickCam" accept="image/*" capture="environment">
+  </div>
+  <img id="thumb" alt="">
+  <div class="ctl" data-eng="SKELETON DUST SOVEREIGN MATRIX">
+    <label>SRC RES CAP <output id="o_srcres">1400</output></label>
+    <input type="range" id="srcres" data-out="o_srcres" min="600" max="3200" step="100" value="1400">
+  </div>
+</section>
+
+<section class="card">
+  <h2>CONTROLS</h2>
+
+  <!-- shared render px -->
+  <div class="ctl" data-eng="SKELETON DUST MATRIX TEXT">
+    <label>GLYPH PX <output id="o_fpx">24</output></label>
+    <input type="range" id="fpx" data-out="o_fpx" min="8" max="74" step="1" value="24">
+  </div>
+
+  <!-- SKELETON -->
+  <div class="ctl" data-eng="SKELETON DUST MATRIX">
+    <label>COLUMNS <output id="o_cols">120</output></label>
+    <input type="range" id="cols" data-out="o_cols" min="40" max="360" step="4" value="120">
+  </div>
+  <div class="ctl" data-eng="SKELETON">
+    <label>NOISE GATE <output id="o_gateSkel">8</output></label>
+    <input type="range" id="gateSkel" data-out="o_gateSkel" min="0" max="240" step="1" value="8">
+  </div>
+  <div class="ctl" data-eng="SKELETON">
+    <label>STROKES (dim→hot)</label>
+    <input type="text" id="rampSkel" value="_-|" autocomplete="off">
+  </div>
+  <div class="btnrow" data-eng="SKELETON" style="margin-top:10px">
+    <button class="btn small" id="preS9">S9 VENOM PRESET</button>
+  </div>
+
+  <!-- DUST -->
+  <div class="ctl" data-eng="DUST">
+    <label>EDGE THRESH <output id="o_edgeThresh">45</output></label>
+    <input type="range" id="edgeThresh" data-out="o_edgeThresh" min="5" max="100" step="1" value="45">
+  </div>
+  <div class="pair" data-eng="DUST">
+    <div class="ctl">
+      <label>GAMMA <output id="o_gamma">0.20</output></label>
+      <input type="range" id="gamma" data-out="o_gamma" min="0.05" max="1.50" step="0.05" value="0.20">
+    </div>
+    <div class="ctl">
+      <label>AUTOCONTRAST <output id="o_autoc">2</output></label>
+      <input type="range" id="autoc" data-out="o_autoc" min="0" max="10" step="1" value="2">
+    </div>
+  </div>
+  <div class="ctl" data-eng="DUST">
+    <label>GLITCH % <output id="o_glitch">3.5</output></label>
+    <input type="range" id="glitch" data-out="o_glitch" min="0" max="15" step="0.5" value="3.5">
+  </div>
+  <div class="ctl" data-eng="DUST">
+    <label>COLOR MODE</label>
+    <select id="colorMode">
+      <option value="MONO">MONO (FG on BG)</option>
+      <option value="TRUE">TRUECOLOR (per glyph)</option>
+    </select>
+  </div>
+  <div class="ctl" data-eng="DUST">
+    <label>DUST RAMP (bright→dark)</label>
+    <input type="text" id="rampDust" value="·°ºoO0#@" autocomplete="off">
+  </div>
+  <div class="pair" data-eng="DUST">
+    <div class="ctl">
+      <label>GLITCH MAP</label>
+      <input type="text" id="rampGlitch" value="λ[]⊦Σ" autocomplete="off">
+    </div>
+    <div class="ctl">
+      <label>EDGES H,/,|,\</label>
+      <input type="text" id="rampEdge" value="-/|\" autocomplete="off">
+    </div>
+  </div>
+  <div class="btnrow" data-eng="DUST" style="margin-top:10px">
+    <button class="btn small" id="preTerm">TERMINAL</button>
+    <button class="btn small" id="preBlue">BLUEPRINT</button>
+  </div>
+
+  <!-- SOVEREIGN -->
+  <div class="ctl" data-eng="SOVEREIGN">
+    <label>GRID WIDTH <output id="o_sovW">45</output></label>
+    <input type="range" id="sovW" data-out="o_sovW" min="20" max="120" step="1" value="45">
+  </div>
+  <div class="pair" data-eng="SOVEREIGN">
+    <div class="ctl">
+      <label>COLOR BANDS <output id="o_bands">24</output></label>
+      <input type="range" id="bands" data-out="o_bands" min="2" max="64" step="1" value="24">
+    </div>
+    <div class="ctl">
+      <label>NOISE GATE <output id="o_gateSov">3</output></label>
+      <input type="range" id="gateSov" data-out="o_gateSov" min="1" max="60" step="1" value="3">
+    </div>
+  </div>
+  <div class="ctl" data-eng="SOVEREIGN">
+    <label>GLYPH SCALE <output id="o_gscale">2.4</output></label>
+    <input type="range" id="gscale" data-out="o_gscale" min="0.3" max="4" step="0.1" value="2.4">
+  </div>
+  <div class="ctl" data-eng="SOVEREIGN">
+    <label>KANA ー ヽ 丨 ノ</label>
+    <input type="text" id="rampKana" value="ーヽ丨ノ" autocomplete="off">
+  </div>
+
+  <!-- MATRIX -->
+  <div class="ctl" data-eng="MATRIX">
+    <label>BLOCK RAMP (void→full)</label>
+    <input type="text" id="rampMatrix" value=" ░▒▓█" autocomplete="off">
+  </div>
+
+  <!-- TEXT -->
+  <div class="pair" data-eng="TEXT">
+    <div class="ctl">
+      <label>WIDTH <output id="o_twidth">44</output></label>
+      <input type="range" id="twidth" data-out="o_twidth" min="24" max="96" step="1" value="44">
+    </div>
+    <div class="ctl">
+      <label>SMUSH RATIO <output id="o_tratio">0.30</output></label>
+      <input type="range" id="tratio" data-out="o_tratio" min="0.18" max="0.60" step="0.01" value="0.30">
+    </div>
+  </div>
+  <div class="ctl" data-eng="TEXT">
+    <label>RAMP (dark→bright)</label>
+    <input type="text" id="rampText" value=" .,·°o" autocomplete="off">
+  </div>
+  <div class="btnrow" data-eng="TEXT" style="margin-top:10px">
+    <button class="btn small" id="preSmush">SMUSH</button>
+    <button class="btn small" id="preRigid">RIGID</button>
+  </div>
+  <label class="check" data-eng="TEXT"><input type="checkbox" id="bakePng" checked> BAKE PNG TOO</label>
+
+  <!-- shared colors -->
+  <div class="pair" data-eng="SKELETON DUST SOVEREIGN MATRIX TEXT">
+    <div class="ctl">
+      <label>FOREGROUND</label>
+      <input type="color" id="fg" value="#00ffff">
+    </div>
+    <div class="ctl">
+      <label>BACKGROUND</label>
+      <input type="color" id="bg" value="#050505">
+    </div>
+  </div>
+</section>
+
+<button id="runBtn" disabled>RUN ENGINE</button>
+
+<section class="card">
+  <h2>OUTPUT</h2>
+  <img id="outimg" alt="engine output — long-press to save">
+   <div id="log"></div>
+  <pre id="outtxt"></pre>
+  <div id="outbtns" class="btnrow">
+    <a class="btn" id="dl" href="#" download="GLYPH.png">DOWNLOAD PNG</a>
+    <button class="btn" id="copyTxt" style="display:none">COPY TEXT</button>
+  </div>
+  <div class="note">PNG output: long-press the image → Save to Photos, or use DOWNLOAD.</div>
+</section>
+
+<section class="card">
+  <h2>FONT VAULT</h2>
+  <div class="btnrow">
+    <label class="btn small" for="fontVga">LOAD .TTF → VGA</label>
+    <input type="file" id="fontVga" accept=".ttf,.otf,.woff,.woff2">
+    <label class="btn small" for="fontKana">LOAD .TTF → KANA</label>
+    <input type="file" id="fontKana" accept=".ttf,.otf,.woff,.woff2">
+  </div>
+  <div class="note">
+    Permanent embed: paste your full Web437 base64 into <code>USER_FONT_B64.VGA</code> at the very top
+    of the script (raw base64 or full data-URI, either works). <code>KANA</code> slot feeds the
+    SOVEREIGN engine (Migu 1M / DotGothic16). No font = system mono fallback, still runs.
+  </div>
+</section>
+
 <script>
-
-const screen = document.getElementById("screen");
-
-const W = Math.floor(window.innerWidth / 5.5);
-const H = Math.floor(window.innerHeight / 9);
-const chars = "·░.◦▓◌○◍◉●";
-
-let current  = Array.from({length:H}, () => new Float32Array(W));
-let previous = Array.from({length:H}, () => new Float32Array(W));
-let next     = Array.from({length:H}, () => new Float32Array(W));
-
-// --- WHALE ---
-const whale = {
-    x:          -10,
-    y:          H * 0.5,
-    speedX:     0.04,
-    sinT:       0,
-    sinFreq:    0.006,
-    sinAmp:     H * 0.06,   // subtle undulation while hidden
-    len:        9,
-    surfaceIn:  300 + Math.floor(Math.random() * 400),  // first appearance
-    surfacing:  0,          // countdown while visible
+/* ╔═══════════════════════════════════════════════════════════════╗
+   ║  FONT VAULT — paste base64 TTF between the quotes below.       ║
+   ║  Raw base64 OR a full "data:font/ttf;base64,..." string both   ║
+   ║  work. Whitespace/newlines in the paste are fine.              ║
+   ║    VGA  → Web437_IBM_VGA_9x16 (SKELETON / DUST / TEXT bake)    ║
+   ║    KANA → Migu 1M / DotGothic16 (SOVEREIGN katakana)           ║
+   ╚═══════════════════════════════════════════════════════════════╝ */
+const USER_FONT_B64 = {
+  VGA:  "IBM VGA",   /* ←←← PASTE VGA BASE64 HERE */
+  KANA: ""    /* ←←← optional kana font    */
 };
 
-function updateWhale() {
-    whale.sinT += whale.sinFreq;
-    whale.x    += whale.speedX;
+/* ═══ ENGINE LINEAGE ═════════════════════════════════════════════
+   SKELETON  ← Oneline.py + Serpent 9  (FIND_EDGES → vector strokes)
+   DUST      ← Uitascii/Ultuktaskkii/Ultcolirascii (Sobel + NMS +
+               glitch injection + dust ramp, mono or truecolor)
+   SOVEREIGN ← Jasci.py (katakana vector calculus, quantized color)
+   MATRIX    ← KintsugiSoldier recon (VGA block slate, gold omitted)
+   TEXTMODE  ← Ouscii.py (SMUSH / RIGID copy-paste ascii)
+   ════════════════════════════════════════════════════════════════ */
 
-    if (whale.x > W + whale.len) {
-        whale.x      = -whale.len;
-        whale.y      = H * (0.2 + Math.random() * 0.6);
-        // reset surface timer on each new pass
-        whale.surfaceIn = 400 + Math.floor(Math.random() * 500);
-    }
+"IBM VGA";
+const $ = id => document.getElementById(id);
+const V = id => parseFloat($(id).value);
+const S = id => $(id).value;
+const state = { img:null, name:"", eng:"SKELETON", bchar:"-" };
+const FSTATE = { VGA:false, KANA:false };
+const logEl = $("log");
 
-    // trigger a surface event
-    whale.surfaceIn--;
-    if (whale.surfaceIn <= 0 && whale.surfacing <= 0) {
-        whale.surfacing = 60;  // visible for ~1 second
-        whale.surfaceIn = 999; // won't surface again this pass
-    }
-    if (whale.surfacing > 0) whale.surfacing--;
-
-    const visible = whale.surfacing > 0;
-
-    // body cells
-    whale.cells = [];
-    for (let i = 0; i < whale.len; i++) {
-        let bx = Math.round(whale.x - i);
-        let by = Math.round(whale.y + Math.sin(whale.sinT - i * 0.35) * whale.sinAmp);
-        if (bx > 0 && bx < W-1 && by > 0 && by < H-1) {
-            whale.cells.push({x: bx, y: by, i, visible});
-        }
-    }
-
-    // wake — always there, even when invisible. that's the spooky part.
-    if (whale.cells.length > 0) {
-        const head = whale.cells[0];
-        if (visible) {
-            // breach — big surface burst
-            for (let dy = -4; dy <= 4; dy++) {
-                for (let dx = -5; dx <= 5; dx++) {
-                    let px = head.x+dx, py = head.y+dy;
-                    if (px>0&&px<W-1&&py>0&&py<H-1) current[py][px] += 12 * (1 - Math.abs(dx)/6);
-                }
-            }
-        } else {
-            // submerged — just a ghost pressure ripple from the head
-            for (let dy = -1; dy <= 1; dy++) {
-                let py = head.y + dy;
-                if (head.x>0&&head.x<W-1&&py>0&&py<H-1) current[py][head.x] += 0.9;
-            }
-        }
-    }
+/* ── log panel ─────────────────────────────────────────────── */
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+function log(m){
+  const el = document.createElement("div");
+  const i = m.indexOf("]");
+  if (m[0] === "[" && i > 0)
+    el.innerHTML = '<span class="tg">' + esc(m.slice(0, i+1)) + "</span> " + esc(m.slice(i+1));
+  else el.textContent = m;
+  if (/FAULT|HALT|CLAMP|WARN/.test(m)) el.classList.add("warn");
+  logEl.prepend(el);
+  while (logEl.children.length > 18) logEl.lastChild.remove();
 }
 
-// --- PHYSICS ---
-function ripple() {
-    for (let y = 1; y < H-1; y++) {
-        const cRow = current[y];
-        const pRow = previous[y];
-        const nRow = next[y];
-        for (let x = 1; x < W-1; x++) {
-            let v = (current[y-1][x] + current[y+1][x] + cRow[x-1] + cRow[x+1]) / 2 - pRow[x];
-            let d = 0.99;
-            let e = Math.min(Math.min(x, W-1-x), Math.min(y, H-1-y));
-            if (e < 8) d *= 0.85 + (e/8)*0.15;
-            nRow[x] = v * d;
-        }
-    }
-    let tmp = previous; previous = current; current = next; next = tmp;
+/* ── canvas + pixel utils ──────────────────────────────────── */
+function hexRgb(hx){ const n = parseInt(hx.slice(1), 16); return [(n>>16)&255, (n>>8)&255, n&255]; }
+function mkC(w,h){ const c = document.createElement("canvas"); c.width = w; c.height = h; return c; }
+function ctx2(c){ return c.getContext("2d", { willReadFrequently:true }); }
+
+function drawCapped(img, maxDim){
+  let w = img.naturalWidth, h = img.naturalHeight;
+  const s = Math.min(1, maxDim / Math.max(w, h));
+  w = Math.max(1, Math.round(w*s)); h = Math.max(1, Math.round(h*s));
+  const c = mkC(w,h); const x = ctx2(c);
+  x.imageSmoothingEnabled = true; x.imageSmoothingQuality = "high";
+  x.drawImage(img, 0, 0, w, h);
+  return c;
+}
+function scaleC(src, w, h, smooth){
+  const c = mkC(w,h); const x = ctx2(c);
+  x.imageSmoothingEnabled = !!smooth;
+  if (smooth) x.imageSmoothingQuality = "high";
+  x.drawImage(src, 0, 0, w, h);
+  return c;
+}
+function grayOf(canvas){
+  const w = canvas.width, h = canvas.height;
+  const d = ctx2(canvas).getImageData(0,0,w,h).data;
+  const g = new Float32Array(w*h);
+  for (let i=0, j=0; i<g.length; i++, j+=4)
+    g[i] = 0.299*d[j] + 0.587*d[j+1] + 0.114*d[j+2];
+  return g;
+}
+function grayToCanvas(g, w, h){
+  const c = mkC(w,h); const x = ctx2(c);
+  const id = x.createImageData(w,h); const d = id.data;
+  for (let i=0, j=0; i<g.length; i++, j+=4){
+    const v = Math.max(0, Math.min(255, Math.round(g[i])));
+    d[j] = d[j+1] = d[j+2] = v; d[j+3] = 255;
+  }
+  x.putImageData(id, 0, 0);
+  return c;
+}
+function autocontrast(g, cutoffPct){
+  const n = g.length, hist = new Uint32Array(256);
+  for (let i=0;i<n;i++) hist[g[i]|0]++;
+  const clip = n * cutoffPct / 100;
+  let lo = 0, hi = 255, acc = 0;
+  for (lo=0; lo<256; lo++){ acc += hist[lo]; if (acc > clip) break; }
+  acc = 0;
+  for (hi=255; hi>=0; hi--){ acc += hist[hi]; if (acc > clip) break; }
+  if (hi <= lo) return g;
+  const sc = 255/(hi-lo);
+  for (let i=0;i<n;i++) g[i] = Math.max(0, Math.min(255, (g[i]-lo)*sc));
+  return g;
+}
+function median3(g, w, h){
+  const o = Float32Array.from(g);
+  for (let r=1; r<h-1; r++) for (let c=1; c<w-1; c++){
+    const t = [
+      g[(r-1)*w+c-1], g[(r-1)*w+c], g[(r-1)*w+c+1],
+      g[r*w+c-1],     g[r*w+c],     g[r*w+c+1],
+      g[(r+1)*w+c-1], g[(r+1)*w+c], g[(r+1)*w+c+1]
+    ].sort((a,b)=>a-b);
+    o[r*w+c] = t[4];
+  }
+  return o;
+}
+function sobel(g, w, h){
+  const gx = new Float32Array(w*h), gy = new Float32Array(w*h), mag = new Float32Array(w*h);
+  for (let r=1; r<h-1; r++) for (let c=1; c<w-1; c++){
+    const i = r*w+c;
+    const a=g[i-w-1], b=g[i-w], cc=g[i-w+1],
+          d=g[i-1],              f=g[i+1],
+          gg=g[i+w-1], hh=g[i+w], ii=g[i+w+1];
+    const dx = (cc + 2*f + ii) - (a + 2*d + gg);
+    const dy = (gg + 2*hh + ii) - (a + 2*b + cc);
+    gx[i]=dx; gy[i]=dy; mag[i]=Math.hypot(dx,dy);
+  }
+  return { gx, gy, mag };
+}
+function centralGrad(g, w, h){   /* np.gradient */
+  const gx = new Float32Array(w*h), gy = new Float32Array(w*h);
+  for (let r=0; r<h; r++) for (let c=0; c<w; c++){
+    const i = r*w+c;
+    gx[i] = (w<2) ? 0 : (c===0) ? g[i+1]-g[i] : (c===w-1) ? g[i]-g[i-1] : (g[i+1]-g[i-1])/2;
+    gy[i] = (h<2) ? 0 : (r===0) ? g[i+w]-g[i] : (r===h-1) ? g[i]-g[i-w] : (g[i+w]-g[i-w])/2;
+  }
+  return { gx, gy };
+}
+function findEdges8(g, w, h){    /* PIL FIND_EDGES kernel */
+  const o = new Float32Array(w*h);
+  for (let r=1; r<h-1; r++) for (let c=1; c<w-1; c++){
+    const i = r*w+c;
+    const v = 8*g[i] - (g[i-w-1]+g[i-w]+g[i-w+1]+g[i-1]+g[i+1]+g[i+w-1]+g[i+w]+g[i+w+1]);
+    o[i] = Math.max(0, Math.min(255, v));
+  }
+  return o;
 }
 
-// --- RENDER ---
-function render() {
-    const whaleCells = new Set();
-    if (whale.cells) {
-        for (const c of whale.cells) {
-            if (c.visible) whaleCells.add(c.x + c.y * W);
-        }
-    }
-
-    let out = "";
-    for (let y = 0; y < H; y++) {
-        const row = current[y];
-        for (let x = 0; x < W; x++) {
-            if (whaleCells.has(x + y * W)) {
-                out += "◉";
-            } else {
-                let idx = Math.floor(((row[x]+5)/20)*chars.length);
-                if (idx < 0) idx = 0;
-                if (idx > chars.length-1) idx = chars.length-1;
-                out += chars[idx];
-            }
-        }
-        out += "\n";
-    }
-    screen.textContent = out;
+/* ── fonts ─────────────────────────────────────────────────── */
+function fontStack(kana){
+  return kana
+    ? '"GF_KANA","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif'
+    : '"GF_VGA","IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace';
+}
+function metrics(px){
+  const x = ctx2(mkC(8,8));
+  x.font = px + "px " + fontStack(false);
+  const cw = x.measureText("@").width || px*0.5625;
+  return { cw, ch:px };
+}
+async function loadFontBuf(slot, buf){
+  const fam = slot === "VGA" ? "GF_VGA" : "GF_KANA";
+  const f = new FontFace(fam, buf);
+  await f.load();
+  document.fonts.add(f);
+  FSTATE[slot] = true;
+  log("[FONT] " + slot + " loaded ✓");
+}
+function cleanB64(s){ return s.replace(/^data:[^,]*,/, "").replace(/\s+/g, ""); }
+async function bootFonts(){
+  for (const k of ["VGA","KANA"]){
+    const b = USER_FONT_B64[k];
+    if (!b) continue;
+    try {
+      const s = atob(cleanB64(b));
+      const u = new Uint8Array(s.length);
+      for (let i=0;i<s.length;i++) u[i] = s.charCodeAt(i);
+      await loadFontBuf(k, u.buffer);
+    } catch(e){ log("[WARN] " + k + " b64 failed: " + e.message); }
+  }
+  if (!FSTATE.VGA) log("[FONT] no VGA embed — system mono fallback");
+}
+function hookFontInput(inputId, slot){
+  $(inputId).addEventListener("change", async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try { await loadFontBuf(slot, await f.arrayBuffer()); }
+    catch(err){ log("[FAULT] font load: " + err.message); }
+  });
 }
 
-// --- LOOP ---
-function animate() {
-    updateWhale();
-    ripple();
-    render();
-    requestAnimationFrame(animate);
-}
-animate();
-
-// --- INPUT ---
-function splash(cx, cy) {
-    for (let dy = -3; dy <= 3; dy++) {
-        for (let dx = -3; dx <= 3; dx++) {
-            let px = cx+dx, py = cy+dy;
-            if (px>0&&px<W-1&&py>0&&py<H-1) current[py][px] = 18;
-        }
+/* ── glyph grid renderer (shared) ──────────────────────────── */
+function renderGrid(cells, cols, rows, px, bgc, pad){
+  let m = metrics(px);
+  let W = Math.ceil(cols*m.cw) + pad*2, H = rows*m.ch + pad*2;
+  const MX = 4000;
+  if (W > MX || H > MX){
+    const s = MX / Math.max(W, H);
+    px = Math.max(6, Math.floor(px*s));
+    m = metrics(px);
+    W = Math.ceil(cols*m.cw) + pad*2; H = rows*m.ch + pad*2;
+    log("[CLAMP] glyph px → " + px + " (canvas cap)");
+  }
+  const c = mkC(W,H); const x = ctx2(c);
+  x.fillStyle = bgc; x.fillRect(0,0,W,H);
+  x.font = px + "px " + fontStack(false);
+  x.textBaseline = "top";
+  let cur = "";
+  for (let r=0; r<rows; r++){
+    const row = cells[r];
+    for (let cc=0; cc<cols; cc++){
+      const cell = row[cc];
+      if (!cell || cell.ch === " ") continue;
+      if (cell.fill !== cur){ x.fillStyle = cell.fill; cur = cell.fill; }
+      x.fillText(cell.ch, pad + cc*m.cw, pad + r*m.ch);
     }
+  }
+  return c;
 }
-document.addEventListener("pointerdown", e => {
-    splash(Math.floor(e.clientX/window.innerWidth*W), Math.floor(e.clientY/window.innerHeight*H));
+
+/* ══ ENGINE: SKELETON ═══════════════════════════════════════ */
+function runSKELETON(){
+  const img = state.img, cols = V("cols")|0, gate = V("gateSkel");
+  const full = drawCapped(img, V("srcres"));
+  let g = grayOf(full);
+  autocontrast(g, 0);
+  g = findEdges8(g, full.width, full.height);
+  const ec = grayToCanvas(g, full.width, full.height);
+  const rows = Math.max(1, Math.floor(cols * (img.naturalHeight/img.naturalWidth) * 0.5));
+  const p = grayOf(scaleC(ec, cols, rows, true));
+  let strokes = [" ", ...S("rampSkel")];
+  if (strokes.length < 2) strokes = [" ","_","-","|"];
+  const L = strokes.length, fg = S("fg");
+  const cells = [];
+  for (let r=0; r<rows; r++){
+    const row = [];
+    for (let c=0; c<cols; c++){
+      const v = p[r*cols+c];
+      if (v >= gate && gate < 255){
+        let idx = 1 + Math.floor((v-gate)/(255-gate) * (L-2));
+        idx = Math.min(idx, L-1);
+        row.push({ ch: strokes[idx], fill: fg });
+      } else row.push(null);
+    }
+    cells.push(row);
+  }
+  log("[GRID] " + cols + "×" + rows);
+  return renderGrid(cells, cols, rows, V("fpx")|0, S("bg"), 8);
+}
+
+/* ══ ENGINE: DUST ═══════════════════════════════════════════ */
+function runDUST(){
+  const img = state.img, cols = V("cols")|0, px = V("fpx")|0;
+  const thresh = V("edgeThresh"), gamma = V("gamma"), glitchP = V("glitch")/100;
+  const iw = img.naturalWidth, ih = img.naturalHeight;
+  const m = metrics(px);
+  const rows = Math.max(1, Math.round(cols * m.cw * ih / (iw * m.ch)));
+
+  const full = drawCapped(img, V("srcres"));
+  let gFull = grayOf(full);
+  autocontrast(gFull, V("autoc"));
+  const gc = grayToCanvas(gFull, full.width, full.height);
+  let a = grayOf(scaleC(gc, cols, rows, true));
+  a = median3(a, cols, rows);
+  const rd = ctx2(scaleC(full, cols, rows, true)).getImageData(0,0,cols,rows).data;
+  const { gx, gy, mag } = sobel(a, cols, rows);
+
+  let ramp = [...S("rampDust")]; if (ramp.length < 2) ramp = [..."·°ºoO0#@"];
+  const rmax = ramp.length - 1;
+  const gl = [...S("rampGlitch")];
+  let eg = [...S("rampEdge")]; while (eg.length < 4) eg.push(eg[eg.length-1] || "-");
+  const mode = S("colorMode"), fg = S("fg");
+
+  const cells = [];
+  for (let r=0; r<rows; r++){
+    const row = [];
+    for (let c=0; c<cols; c++){
+      const i = r*cols+c;
+      let ch = null;
+      const M = mag[i];
+      if (M >= thresh){
+        let mx = 0;
+        if (c>0)      mx = Math.max(mx, mag[i-1]);
+        if (c<cols-1) mx = Math.max(mx, mag[i+1]);
+        if (r>0)      mx = Math.max(mx, mag[i-cols]);
+        if (r<rows-1) mx = Math.max(mx, mag[i+cols]);
+        if (M >= mx){   /* non-max suppression survivor */
+          if (M > 120 && gl.length && Math.random() < glitchP)
+            ch = gl[(Math.random()*gl.length)|0];
+          else {
+            let ang = Math.atan2(gy[i], gx[i]) * 180/Math.PI;
+            ang = ((ang % 180) + 180) % 180;
+            ch = (ang < 22.5 || ang >= 157.5) ? eg[0] : (ang < 67.5) ? eg[1] : (ang < 112.5) ? eg[2] : eg[3];
+          }
+        }
+      }
+      if (!ch){
+        let idx = Math.floor((Math.pow(a[i]/255, gamma)*255|0) * rmax / 255);
+        idx = Math.max(0, Math.min(rmax, idx));
+        ch = ramp[rmax - idx];
+      }
+      const fill = (mode === "TRUE")
+        ? "rgb(" + rd[i*4] + "," + rd[i*4+1] + "," + rd[i*4+2] + ")"
+        : fg;
+      row.push({ ch, fill });
+    }
+    cells.push(row);
+  }
+  log("[GRID] " + cols + "×" + rows + " · cell " + m.cw.toFixed(1) + "×" + m.ch);
+  return renderGrid(cells, cols, rows, px, S("bg"), 8);
+}
+
+/* ══ ENGINE: SOVEREIGN (katakana) ═══════════════════════════ */
+function runSOVEREIGN(){
+  const img = state.img;
+  const full = drawCapped(img, V("srcres"));
+  const W = full.width, H = full.height;
+  const tw = V("sovW")|0, th = Math.max(1, Math.round(tw * H / W));
+  const bands = Math.max(2, V("bands")|0), gate = V("gateSov");
+
+  const d = ctx2(scaleC(full, tw, th, true)).getImageData(0,0,tw,th).data;
+  const step = 255/(bands-1);
+  const q = new Uint8ClampedArray(d.length);
+  for (let i=0; i<d.length; i+=4){
+    q[i]   = Math.round(d[i]  /step)*step;
+    q[i+1] = Math.round(d[i+1]/step)*step;
+    q[i+2] = Math.round(d[i+2]/step)*step;
+    q[i+3] = 255;
+  }
+  const gq = new Float32Array(tw*th);
+  for (let i=0, j=0; i<gq.length; i++, j+=4)
+    gq[i] = 0.299*q[j] + 0.587*q[j+1] + 0.114*q[j+2];
+  const { gx, gy } = centralGrad(gq, tw, th);
+
+  let K = [...S("rampKana")];
+  while (K.length < 4) K.push(K[K.length-1] || "ー");
+
+  const out = mkC(W,H); const x = ctx2(out);
+  x.fillStyle = S("bg"); x.fillRect(0,0,W,H);
+  const sx = W/tw, sy = H/th;
+  const px = Math.max(4, Math.round(sy * V("gscale")));
+  x.font = px + "px " + fontStack(true);
+  x.textBaseline = "top";
+
+  let drawn = 0;
+  for (let r=0; r<th; r++) for (let c=0; c<tw; c++){
+    const i = r*tw+c;
+    const M = Math.hypot(gx[i], gy[i]);
+    if (M < gate) continue;
+    let ang = (Math.atan2(gy[i], gx[i]) * 180/Math.PI + 90) % 180;
+    if (ang < 0) ang += 180;
+    const ch = (ang < 22.5 || ang >= 157.5) ? K[0] : (ang < 67.5) ? K[1] : (ang < 112.5) ? K[2] : K[3];
+    const j = i*4;
+    x.fillStyle = "rgb(" + q[j] + "," + q[j+1] + "," + q[j+2] + ")";
+    x.fillText(ch, c*sx, r*sy);
+    drawn++;
+  }
+  log("[GRID] " + tw + "×" + th + " · " + drawn + " glyphs @ " + px + "px");
+  return out;
+}
+
+/* ══ ENGINE: MATRIX (Kintsugi VGA block slate) ══════════════ */
+function runMATRIX(){
+  const img = state.img, cols = V("cols")|0, px = V("fpx")|0;
+  const m = metrics(px);
+  const rows = Math.max(1, Math.round(cols * m.cw * img.naturalHeight / (img.naturalWidth * m.ch)));
+  const p = grayOf(scaleC(drawCapped(img, V("srcres")), cols, rows, true));
+
+  let ramp = [...S("rampMatrix")]; if (ramp.length < 2) ramp = [..." ░▒▓█"];
+  const L = ramp.length, div = Math.ceil(256/L);   /* p//52 for the 5-step ramp */
+  const anchors = [12, 60, 110, 180, 245];         /* soldier slate ladder */
+  const toneAt = i => {
+    const t = i/(L-1) * (anchors.length-1);
+    const a = Math.floor(t), b = Math.min(anchors.length-1, a+1);
+    return anchors[a] + (anchors[b]-anchors[a]) * (t-a);
+  };
+  const fg = hexRgb(S("fg"));
+
+  const cells = [];
+  for (let r=0; r<rows; r++){
+    const row = [];
+    for (let c=0; c<cols; c++){
+      const idx = Math.min(L-1, (p[r*cols+c] / div)|0);
+      if (ramp[idx] === " "){ row.push(null); continue; }
+      const t = toneAt(idx) / 245;
+      row.push({ ch: ramp[idx],
+        fill: "rgb(" + Math.round(fg[0]*t) + "," + Math.round(fg[1]*t) + "," + Math.round(fg[2]*t) + ")" });
+    }
+    cells.push(row);
+  }
+  log("[GRID] " + cols + "×" + rows + " · " + L + "-step slate");
+  return renderGrid(cells, cols, rows, px, S("bg"), 8);
+}
+
+/* ══ ENGINE: TEXTMODE (smush / rigid) ═══════════════════════ */
+function runTEXT(){
+  const img = state.img;
+  const w = V("twidth")|0, ratio = V("tratio");
+  const rows = Math.max(1, Math.floor(w * (img.naturalHeight/img.naturalWidth) * ratio));
+  let p = grayOf(scaleC(drawCapped(img, 1600), w, rows, true));
+  autocontrast(p, 0);
+  let chars = [...S("rampText")]; if (chars.length < 2) chars = [..." .,·°o"];
+  const L = chars.length;
+  const border = "+" + state.bchar.repeat(w) + "+";
+  const lines = [];
+  for (let r=0; r<rows; r++){
+    let line = "|";
+    for (let c=0; c<w; c++){
+      const idx = Math.min(L-1, (p[r*w+c] * (L-1) / 255)|0);
+      line += chars[idx];
+    }
+    lines.push(line + "|");
+  }
+  const text = [border, ...lines, border].join("\n");
+  log("[TEXT] " + w + "×" + rows + " · ratio " + ratio.toFixed(2));
+  let canvas = null;
+  if ($("bakePng").checked){
+    const all = [border, ...lines, border];
+    const gc = all.map(ln => [...ln].map(ch => ch === " " ? null : { ch, fill:S("fg") }));
+    canvas = renderGrid(gc, w+2, all.length, V("fpx")|0, S("bg"), 8);
+  }
+  return { text, canvas };
+}
+
+/* ── output plumbing ───────────────────────────────────────── */
+function showCanvas(c){
+  const name = "GF_" + state.eng + "_" + Date.now() + ".png";
+  $("outimg").src = c.toDataURL("image/png");
+  $("outimg").style.display = "block";
+  c.toBlob(b => {
+    if (!b) return;
+    const dl = $("dl");
+    if (dl.dataset.url) URL.revokeObjectURL(dl.dataset.url);
+    const u = URL.createObjectURL(b);
+    dl.href = u; dl.download = name; dl.dataset.url = u;
+  }, "image/png");
+  $("dl").style.display = "inline-block";
+  $("outbtns").style.display = "flex";
+  log("[OUT] " + c.width + "×" + c.height + " px → " + name);
+}
+function showText(t){
+  $("outtxt").textContent = t;
+  $("outtxt").style.display = "block";
+  $("copyTxt").style.display = "inline-block";
+  $("outbtns").style.display = "flex";
+}
+function clearOut(){
+  $("outimg").style.display = "none";
+  $("outtxt").style.display = "none";
+  $("copyTxt").style.display = "none";
+  $("dl").style.display = "none";
+  $("outbtns").style.display = "none";
+}
+
+const ENGINES = {
+  SKELETON: () => showCanvas(runSKELETON()),
+  DUST:     () => showCanvas(runDUST()),
+  SOVEREIGN:() => showCanvas(runSOVEREIGN()),
+  MATRIX:   () => showCanvas(runMATRIX()),
+  TEXT:     () => {
+    const { text, canvas } = runTEXT();
+    showText(text);
+    if (canvas) showCanvas(canvas);
+  }
+};
+
+/* ── engine defaults on tab switch ─────────────────────────── */
+const ENG_DEFAULTS = {
+  SKELETON: { fg:"#00ffff", bg:"#050505", cols:120, fpx:16 },
+  DUST:     { fg:"#ffffff", bg:"#050505", cols:120, fpx:24 },
+  SOVEREIGN:{ bg:"#050505" },
+  MATRIX:   { fg:"#f5f5f5", bg:"#0c0c0c", cols:80, fpx:16 },
+  TEXT:     { fg:"#e8e8e8", bg:"#0a0a0a", fpx:18 }
+};
+function setVal(id, v){
+  const el = $(id); if (!el) return;
+  el.value = v;
+  el.dispatchEvent(new Event("input"));
+}
+function applyDefaults(eng){
+  const d = ENG_DEFAULTS[eng] || {};
+  for (const k in d) setVal(k, d[k]);
+}
+function updateVis(){
+  document.querySelectorAll("[data-eng]").forEach(el => {
+    el.style.display = el.dataset.eng.split(" ").includes(state.eng) ? "" : "none";
+  });
+}
+
+/* ── wiring ────────────────────────────────────────────────── */
+document.querySelectorAll(".tab").forEach(t => {
+  t.addEventListener("click", () => {
+    state.eng = t.dataset.e;
+    document.querySelectorAll(".tab").forEach(x => x.setAttribute("aria-selected", x === t ? "true" : "false"));
+    applyDefaults(state.eng);
+    updateVis();
+    clearOut();
+    log("[ENGINE] " + state.eng + " armed");
+  });
 });
-document.addEventListener("pointermove", e => {
-    if (e.buttons) splash(Math.floor(e.clientX/window.innerWidth*W), Math.floor(e.clientY/window.innerHeight*H));
+
+document.querySelectorAll("input[type=range]").forEach(r => {
+  const o = $(r.dataset.out);
+  const dec = (r.step && r.step.includes(".")) ? r.step.split(".")[1].length : 0;
+  const f = () => { if (o) o.textContent = parseFloat(r.value).toFixed(dec); };
+  r.addEventListener("input", f);
+  f();
 });
 
+function loadImage(file){
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  const im = new Image();
+  im.onload = () => {
+    state.img = im;
+    state.name = file.name || "capture";
+    $("thumb").src = url;
+    $("thumb").style.display = "block";
+    $("runBtn").disabled = false;
+    log("[>>] " + state.name + " · " + im.naturalWidth + "×" + im.naturalHeight);
+  };
+  im.onerror = () => log("[FAULT] image decode failed");
+  im.src = url;
+}
+$("pickLib").addEventListener("change", e => loadImage(e.target.files[0]));
+$("pickCam").addEventListener("change", e => loadImage(e.target.files[0]));
+
+$("runBtn").addEventListener("click", () => {
+  if (!state.img){ log("[HALT] no image loaded"); return; }
+  const b = $("runBtn");
+  b.textContent = "RUNNING…"; b.disabled = true;
+  clearOut();
+  setTimeout(() => {
+    try { ENGINES[state.eng](); }
+    catch(e){ log("[FAULT] " + e.message); }
+    finally { b.textContent = "RUN ENGINE"; b.disabled = false; }
+  }, 30);
+});
+
+$("copyTxt").addEventListener("click", async () => {
+  const t = $("outtxt").textContent;
+  try { await navigator.clipboard.writeText(t); log("[COPY] text on clipboard ✓"); }
+  catch(e){
+    const ta = document.createElement("textarea");
+    ta.value = t; document.body.appendChild(ta);
+    ta.select(); document.execCommand("copy"); ta.remove();
+    log("[COPY] fallback copy done");
+  }
+});
+
+/* presets */
+$("preS9").addEventListener("click", () => {
+  setVal("cols", 260); setVal("gateSkel", 4); setVal("fpx", 10);
+  setVal("fg", "#00ffff"); setVal("bg", "#050505");
+  log("[PRESET] S9 VENOM · 260 cols · gate 4");
+});
+$("preTerm").addEventListener("click", () => {
+  setVal("edgeThresh", 45); setVal("gamma", 0.20); setVal("autoc", 2);
+  setVal("fg", "#ffffff"); setVal("bg", "#050505");
+  $("colorMode").value = "MONO";
+  log("[PRESET] TERMINAL dust");
+});
+$("preBlue").addEventListener("click", () => {
+  setVal("edgeThresh", 15); setVal("gamma", 0.10); setVal("autoc", 8);
+  setVal("fg", "#0032ff"); setVal("bg", "#ffffff");
+  $("colorMode").value = "MONO";
+  log("[PRESET] BLUEPRINT · ink on paper");
+});
+$("preSmush").addEventListener("click", () => {
+  setVal("tratio", 0.30); $("rampText").value = " .,·°o"; state.bchar = "-";
+  log("[PRESET] SMUSH · ratio 0.30");
+});
+$("preRigid").addEventListener("click", () => {
+  setVal("tratio", 0.28); $("rampText").value = ",.·°o"; state.bchar = "=";
+  log("[PRESET] RIGID · no-void ramp");
+});
+
+hookFontInput("fontVga", "VGA");
+hookFontInput("fontKana", "KANA");
+
+/* boot */
+applyDefaults("SKELETON");
+updateVis();
+bootFonts().then(() => log("[ENGINE] GLYPH_FORGE online · SKELETON armed"));
 </script>
 </body>
 </html>
